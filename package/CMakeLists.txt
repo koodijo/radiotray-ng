@@ -74,7 +74,14 @@ if (LSB_RELEASE_EXECUTABLE)
         endif()
 
 
-    # Fix for Linux Mint 21.03 should also be fix the build for ubuntu 22.04
+    # Fix for Linux Mint 21.04 should also be fix the build for ubuntu 22.04
+    if (${CODENAME} STREQUAL "wilma" OR ${RELEASE} STREQUAL "22.04")
+            string(REPLACE "libjsoncpp1" "libjsoncpp25" CPACK_DEBIAN_PACKAGE_DEPENDS ${CPACK_DEBIAN_PACKAGE_DEPENDS})
+            string(REPLACE "libappindicator3-1" "libayatana-appindicator3-1" CPACK_DEBIAN_PACKAGE_DEPENDS ${CPACK_DEBIAN_PACKAGE_DEPENDS})
+            string(REPLACE "libwxgtk3.0-gtk3-0v5" "libwxgtk3.2-1" CPACK_DEBIAN_PACKAGE_DEPENDS ${CPACK_DEBIAN_PACKAGE_DEPENDS})
+        endif()
+
+    # Fix for Linux Mint 21.04 should also be fix the build for ubuntu 22.04
     if (${CODENAME} STREQUAL "virginia" OR ${RELEASE} STREQUAL "22.04")
             string(REPLACE "libjsoncpp1" "libjsoncpp25" CPACK_DEBIAN_PACKAGE_DEPENDS ${CPACK_DEBIAN_PACKAGE_DEPENDS})
             string(REPLACE "libappindicator3-1" "libayatana-appindicator3-1" CPACK_DEBIAN_PACKAGE_DEPENDS ${CPACK_DEBIAN_PACKAGE_DEPENDS})
